@@ -17,6 +17,9 @@ module GrapeSwagger
             in:   param_type(value_type),
             name: settings[:full_name] || param
           }
+          if Extensions.extended?(settings)
+            Extensions.add_extension_to(@parsed_param, Extensions.extension(settings))
+          end
 
           # optional properties
           document_description(settings)
